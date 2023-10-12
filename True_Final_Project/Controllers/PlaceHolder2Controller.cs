@@ -19,9 +19,9 @@ namespace True_Final_Project.Controllers
             return View(cost);
         }
 
-        public IActionResult ViewCost(int ID)
+        public IActionResult ViewCost(int id)
         {
-            var cost = repo.GetCost(ID);
+            var cost = repo.GetCost(id);
             return View(cost);
         }
         public IActionResult UpdateCost(int id)
@@ -35,11 +35,11 @@ namespace True_Final_Project.Controllers
         }
 
         //UpdateCostValToDatabase
-        public IActionResult UpdateCostValToDatabase(CostVal cost)
+        public IActionResult UpdateCostValToDatabase(CostVal c)
         {
-            repo.UpdateCost(cost);
+            repo.UpdateCost(c);
 
-            return RedirectToAction("ViewCost", new { id = cost.purchesID });
+            return RedirectToAction("ViewCost", new { id = c.purchesID });
         }
     } 
 }

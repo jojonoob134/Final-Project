@@ -21,13 +21,13 @@ namespace True_Final_Project.Models
             return _conn.Query<CostVal>("SELECT * FROM cost_chart;");
         }
 
-        public CostVal GetCost(int id)
+        public CostVal GetCost(int id) 
         {
-            return _conn.QuerySingle<CostVal>("SELECT * FROM cost_chart WHERE purchesID = @id", new { id = id });
+             return _conn.QuerySingle<CostVal>("SELECT * FROM cost_chart WHERE purchesID = @id", new { id = id });
         }
         public void UpdateCost(CostVal cost)
         {
-            _conn.Execute("UPDATE cost_Chart SET purchesName = @purchesName, cost = @cost WHERE purchesID = @id",
+            _conn.Execute("UPDATE cost_chart SET purchesName = @purchesName, cost = @cost WHERE purchesID = @id",
                 new { purchesName = cost.purchesName, cost = cost.cost, id = cost.purchesID });
         }
     }
