@@ -6,5 +6,7 @@
         public int purchesID { get; set; }
         public string purchesName { get; set; }
         public double cost { get; set; }
+
+        public IEnumerable<Month> Months { get; set; }
     }
 }

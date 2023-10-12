@@ -34,7 +34,6 @@ namespace True_Final_Project.Controllers
             return View(cost);
         }
 
-        //UpdateCostValToDatabase
         public IActionResult UpdateCostValToDatabase(CostVal c)
         {
             repo.UpdateCost(c);

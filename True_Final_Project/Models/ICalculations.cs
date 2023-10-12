@@ -6,6 +6,9 @@
         public IEnumerable<CalcVal> GetAllCalc();
         public CostVal GetCost(int ID);
         public void UpdateCost(CostVal cost);
+
+        public CalcVal GetCalc(int ID);
+        public void UpdateCalc(CalcVal calc);
     }
 
 }

@@ -2,9 +2,9 @@
 {
     public class CalcVal
     {
-        public int monthID { get; set; }
-        public double totalCost { get; set; }
-        public double monthlyIncome { get; set; }
-        public string month { get; set; }
+        public int MonthID { get; set; }
+        public double TotalCost { get; set; }
+        public double MonthlyIncome { get; set; }
+        public string Month { get; set; }
     }
 }
