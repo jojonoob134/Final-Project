@@ -9,6 +9,13 @@
 
         public CalcVal GetCalc(int ID);
         public void UpdateCalc(CalcVal calc);
+
+        public void InsertCostVal(CostVal CostToInsert);
+
+        public IEnumerable<Months> GetMonths();
+
+        public CostVal AssignMonths();
+
     }
 
 }

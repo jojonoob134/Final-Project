@@ -29,7 +29,7 @@ namespace True_Final_Project.Controllers
             CostVal cost = repo.GetCost(id);
             if (cost == null)
             {
-                return View("ProductNotFound");
+                return View("CostNotFound");
             }
             return View(cost);
         }
@@ -38,7 +38,17 @@ namespace True_Final_Project.Controllers
         {
             repo.UpdateCost(c);
 
-            return RedirectToAction("ViewCost", new { id = c.purchesID });
+            return RedirectToAction("ViewCost", new { id = c.PurchesID });
+        }
+        public IActionResult InsertCost()
+        {
+            var prod = repo.AssignMonths();
+            return View(prod);
+        }
+        public IActionResult InsertCostToDatabase(CostVal CostToInsert)
+        {
+            repo.InsertCostVal(CostToInsert);
+            return RedirectToAction("Index");
         }
     } 
 }

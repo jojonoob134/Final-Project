@@ -2,11 +2,11 @@
 {
     public class CostVal
     {
-        public string month { get; set; }
-        public int purchesID { get; set; }
-        public string purchesName { get; set; }
-        public double cost { get; set; }
+        public string Month { get; set; }
+        public int PurchesID { get; set; }
+        public string PurchesName { get; set; }
+        public double Cost { get; set; }
 
-        public IEnumerable<Month> Months { get; set; }
+        public IEnumerable<Months> Months { get; set; }
     }
 }

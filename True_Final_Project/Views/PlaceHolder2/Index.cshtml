@@ -1,6 +1,11 @@
 ﻿@model IEnumerable<CostVal>
 
 <h2>purches name</h2>
+
+<div style="display: block">
+    <a href="/PlaceHolder2/InsertCost/">Create a New Cost</a>
+</div>
+
 <table class="table">
     <tr>
         <th>ID</th>
@@ -12,10 +17,10 @@
     @foreach (var cost in @Model)
     {
         <tr>
-            <td><a href=/PlaceHolder2/ViewCost/@cost.purchesID>@cost.purchesID</a></td>
-            <td>@cost.month</td>
-            <td>@cost.purchesName</td>
-            <td>@cost.cost</td>
+            <td><a href=/PlaceHolder2/ViewCost/@cost.PurchesID>@cost.PurchesID</a></td>
+            <td>@cost.Month</td>
+            <td>@cost.PurchesName</td>
+            <td>@cost.Cost</td>
         </tr>
     }
 

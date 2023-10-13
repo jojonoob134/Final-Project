@@ -1,4 +1,7 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Hosting;
+using Microsoft.VisualBasic;
+using System;
 using System.Data;
 
 namespace True_Final_Project.Models
@@ -16,9 +19,6 @@ namespace True_Final_Project.Models
             return _conn.Query<CalcVal>("SELECT * FROM calculating_chart;");
         }
 
-
-
-
         public CalcVal GetCalc(int id)
         {
             return _conn.QuerySingle<CalcVal>("SELECT * FROM calculating_chart WHERE monthID = @id", new { id = id });
@@ -26,20 +26,11 @@ namespace True_Final_Project.Models
 
         public void UpdateCalc(CalcVal calc)
         {
-            _conn.Execute("UPDATE calculating_chart totalCost = (SELECT SUM)")
+            //_conn.Execute("UPDATE calculating_chart SET totalCost = (SELECT SUM(Cost) FROM cost_chart WHERE cost_chart.month = @month)",
+            //    new { month = calc.Month });
+            _conn.Execute("UPDATE calculating_chart SET MonthlyIncome = @MonthlyIncome",
+                new { MonthlyIncome = calc.MonthlyIncome });
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         public IEnumerable<CostVal> GetAllCost()
         {
@@ -48,29 +39,32 @@ namespace True_Final_Project.Models
 
         public CostVal GetCost(int id) 
         {
-             return _conn.QuerySingle<CostVal>("SELECT * FROM cost_chart WHERE purchesID = @id", new { id = id });
+             return _conn.QuerySingle<CostVal>("SELECT * FROM cost_chart WHERE PurchesID = @id", new { id = id });
         }
         public void UpdateCost(CostVal cost)
         {
-            _conn.Execute("UPDATE cost_chart SET purchesName = @purchesName, cost = @cost WHERE purchesID = @id",
-                new { purchesName = cost.purchesName, cost = cost.cost, id = cost.purchesID });
+            _conn.Execute("UPDATE cost_chart SET PurchesName = @purchesName, Cost = @cost WHERE PurchesID = @id",
+                new { purchesName = cost.PurchesName, cost = cost.Cost, id = cost.PurchesID });
         }
-        //public void InsertMonth(Month monthToInsert)
-        //{
-        //    _conn.Execute("INSERT INTO cost_chart (PURCHESNAME, COST, MONTH) VALUES (@name, @price, @month);",
-        //        new { name = monthToInsert.purchesName, price = monthToInsert.cost, month = monthToInsert.month });
-        //}
-        //public IEnumerable<Month> GetMonths()
-        //{
-        //    return _conn.Query<Month>("SELECT * FROM month;");
-        //}
-        //public CostVal AssignMonths()
-        //{
-        //    var monthList = GetMonths();
-        //    var acountant = new CostVal();
-        //    acountant.Months = monthList;
-        //    return acountant;
-        //}
 
+        public void InsertCostVal(CostVal CostToInsert)
+        {
+            _conn.Execute("INSERT INTO cost_chart (PURCHESNAME, COST, Month) VALUES (@purchesName, @cost, @month);",
+                new { purchesName = CostToInsert.PurchesName, cost = CostToInsert.Cost, month = CostToInsert.Month });
+        }
+
+        public IEnumerable<Months> GetMonths()
+        {
+            return _conn.Query<Months>("SELECT * FROM calculating_chart;");
+        }
+
+        public CostVal AssignMonths()
+        {
+            //throw new NotImplementedException();
+            var MonthList = GetMonths();
+            var cost = new CostVal();
+            cost.Months = MonthList;
+            return cost;
+        }
     }
 }
